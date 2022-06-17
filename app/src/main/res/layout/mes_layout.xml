@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+
+
+    <FrameLayout
+        android:id="@+id/demo1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary">
+
+                <Button
+                    android:id="@+id/back"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:text="历史数据" />
+
+                <!--android:background="@drawable/back"-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/query_tool"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+                <Button
+                    android:id="@+id/btn_query"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="right"
+                    android:text="查询" />
+            </androidx.appcompat.widget.Toolbar>
+
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/tablepadding"
+            android:showDividers="beginning|middle|end"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFBDD3FD"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="指标" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="名称" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="验收结果" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="是否合格" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="JP柜离地高度（标准≥1.8m）" />
+
+                <TextView
+                    android:id="@+id/data_1"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_1"
+                    android:layout_width="83dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+                <!--<Spinner-->
+                    <!--android:id="@+id/sp_1"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:spinnerMode="dialog"-->
+                    <!--&gt;</Spinner>-->
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="2" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="配变距地高度（标准≥3.4m）" />
+
+                <TextView
+                    android:id="@+id/data_2"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_2"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="3" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="槽钢与避雷器横担间距（标准1.8）" />
+
+                <TextView
+                    android:id="@+id/data_3"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_3"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="4" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="避雷器横担与熔丝横担间距（标准1.0m±5cm）" />
+
+                <TextView
+                    android:id="@+id/data_4"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_4"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="5" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="熔丝横担与第二引线横担间距（标准≥1.8m±5cm）" />
+
+                <TextView
+                    android:id="@+id/data_5"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_5"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="6" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="第二引线横担与第一引线横担间距(标准1.8m加减5cm)" />
+
+                <TextView
+                    android:id="@+id/data_6"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_6"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="7" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="第一引线横担与线路横担间距（标准≥1.8m±5cm）" />
+
+                <TextView
+                    android:id="@+id/data_7"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_7"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="8" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="熔断器本体轴线与地面垂线夹角（标准15°~30°）" />
+
+                <TextView
+                    android:id="@+id/data_8"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_8"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="9" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="变压器水平倾斜（标准≤跟开距离1%）" />
+
+                <TextView
+                    android:id="@+id/data_9"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_9"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="10" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="警示牌与变压器挂设高度一致" />
+
+                <TextView
+                    android:id="@+id/data_10"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_10"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="11" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="相位牌与变压器高压侧方向一致" />
+
+                <TextView
+                    android:id="@+id/data_11"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_11"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="12" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="杆号牌离地高度(标准3m)" />
+
+                <TextView
+                    android:id="@+id/data_12"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_12"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="13" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="抱箍配置" />
+
+                <TextView
+                    android:id="@+id/data_13"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_13"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="14" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="电杆埋地深度" />
+
+                <TextView
+                    android:id="@+id/data_14"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_14"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="15" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="接地引下线配置" />
+
+                <TextView
+                    android:id="@+id/data_15"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_15"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="16" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="扁铁配置" />
+
+                <TextView
+                    android:id="@+id/data_16"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_16"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="17" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="低压电缆配置" />
+
+                <TextView
+                    android:id="@+id/data_17"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_17"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="18" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="避雷针配置" />
+
+                <TextView
+                    android:id="@+id/data_18"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_18"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="19" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="接地环和熔丝上桩头间距" />
+
+                <TextView
+                    android:id="@+id/data_19"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_19"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="20" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="引下线与导线连接处由两个异形并购夹相连" />
+
+                <TextView
+                    android:id="@+id/data_20"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_20"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/tablepadding"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="21" />
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:text="导线引下线与熔丝具接口由黄绿红进行相位标注" />
+
+                <TextView
+                    android:id="@+id/data_21"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/result_21"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+        </TableLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="false">
+        <shape>
+            <corners
+                android:topLeftRadius="10dp"
+                android:bottomLeftRadius="10dp" />
+            <solid android:color="@color/WhiteSmoke"/>
+        </shape>
+    </item>
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <!--圆⾓的度数-->
+            <corners
+                android:topLeftRadius="10dp"
+                android:bottomLeftRadius="10dp"/>
+            <!--设置按钮中的⽂字与边框的距离-->
+            <padding android:bottom="6dp" android:left="20dp" android:right="20dp" android:top="6dp"/>
+            <!--背景⾊-->
+            <solid android:color="@color/blue_500"/>
+
+        </shape>
+    </item>
+</selector>
