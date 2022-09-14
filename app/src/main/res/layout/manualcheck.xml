@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <FrameLayout
+        android:id="@+id/fl_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:id="@+id/pre_pho"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/arrow_left_filling"
+                    />
+                <com.example.zftidemo.View.ZoomImageView
+                    android:id="@+id/preview_pho"
+                    android:layout_width="400dp"
+                    android:layout_height="match_parent"
+                    />
+                <ImageView
+                    android:id="@+id/next_pho"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/arrow_right_filling"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="35dp"
+                    android:gravity="center_vertical|left"
+                    android:text="扁铁配置"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <RadioGroup
+                    android:id="@+id/rg_bt"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="135dp"
+                    android:gravity="center_vertical|left"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/bt_good"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="合格"
+                        android:textSize="20sp"
+                        android:theme="@style/rbStyle" />
+
+                    <RadioButton
+                        android:id="@+id/bt_bad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="不合格"
+                        android:textSize="20sp"
+                        android:theme="@style/rbStyle" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:text="低压电缆配置"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="35dp"
+                    android:gravity="center_vertical|left"/>
+                <RadioGroup
+                    android:id="@+id/rg_dl"
+                    android:layout_marginLeft="135dp"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical|left">
+                    <RadioButton
+                        android:id="@+id/dl_good"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="合格"
+                        android:textSize="20sp"
+                        android:theme="@style/rbStyle"/>
+                    <RadioButton
+                        android:id="@+id/dl_bad"
+                        android:layout_marginLeft="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="不合格"
+                        android:textSize="20sp"
+                        android:theme="@style/rbStyle"
+                        />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"/>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/btn_manual_refresh"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="188dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/bt_selector"
+                        android:text="刷新"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                    <Button
+                        android:id="@+id/btn_confirm"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/bt_selector"
+                        android:text="确认"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

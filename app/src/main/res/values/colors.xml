@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#BDD3FD</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorNormal">#FFF</color>
+    <color name="colorPress">#DDD</color>
+    <color name="colorFocus">#EEE</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue_500">#90b0ed</color>
+    <color name="blue_dark">#6982b1</color>
+    <color name="WhiteSmoke">#F5F5F5</color>
+</resources>

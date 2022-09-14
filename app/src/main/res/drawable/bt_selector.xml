@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--单击按钮时按钮的颜色变化-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/btnshape" android:state_pressed="false"/>
+    <item android:drawable="@drawable/btnpressed" android:state_pressed="true"/>
+</selector>

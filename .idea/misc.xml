@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/drawable/dialog_close_selector.xml" value="0.215625" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/cam_man_layout.xml" value="0.4671875" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/camera_layout.xml" value="0.22720364741641338" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/camera_title.xml" value="0.22720364741641338" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/check_layout.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/check_layout1.xml" value="0.4671875" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/createtask.xml" value="0.22720364741641338" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/device_view.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/devicelist.xml" value="0.4671875" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/dialog.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/human_auto_check_layout.xml" value="0.22720364741641338" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/manualcheck.xml" value="0.21603260869565216" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/mes_layout.xml" value="0.2609375" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/photograph.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/setting_layout.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/menu/search_menu.xml" value="0.19947916666666668" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

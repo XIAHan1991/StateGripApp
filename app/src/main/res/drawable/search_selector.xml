@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 查询历史数据右上角筛选单击效果 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/search" android:state_pressed="false"/>
+    <item android:drawable="@drawable/searched" android:state_pressed="true"/>
+</selector>

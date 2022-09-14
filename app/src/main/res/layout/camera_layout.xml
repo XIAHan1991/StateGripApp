@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="MainActivity"
+    android:orientation="vertical">
+    <FrameLayout
+        android:id="@+id/fl_man"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <!--<androidx.appcompat.widget.Toolbar-->
+                <!--android:id="@+id/toolbar"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="?attr/colorPrimary">-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/camera_tool"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:layout_gravity="center"/>-->
+            <!--</androidx.appcompat.widget.Toolbar>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="124dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/btn_front"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/radio"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="正面"
+                        android:textSize="18sp" />
+
+                    <RadioButton
+                        android:id="@+id/btn_side"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/radio"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="侧面"
+                        android:textSize="18sp" />
+
+                    <RadioButton
+                        android:id="@+id/btn_behind"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/radio"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="后面"
+                        android:textSize="18sp" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:baselineAligned="false"
+                android:layout_marginTop="20dp">
+
+                <RelativeLayout
+                    android:id="@+id/camera_layout_firest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <com.serenegiant.widget.UVCCameraTextureView
+                        android:id="@+id/camera_view_first"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <ImageView
+                        android:id="@+id/frame_image_first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/camera_view_first"
+                        android:layout_alignRight="@+id/camera_view_first"
+                        android:layout_alignBottom="@+id/camera_view_first"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginRight="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:src="@drawable/border" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/camera_layout_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <com.serenegiant.widget.UVCCameraTextureView
+                        android:id="@+id/camera_view_second"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true" />
+
+                    <ImageView
+                        android:id="@+id/frame_image_second"
+                        android:layout_width="192dp"
+                        android:layout_height="162dp"
+                        android:layout_alignLeft="@+id/camera_view_second"
+                        android:layout_alignTop="@+id/camera_view_second"
+                        android:layout_alignRight="@+id/camera_view_second"
+                        android:layout_alignBottom="@+id/camera_view_second"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="-4dp"
+                        android:layout_marginBottom="-1dp"
+                        android:src="@drawable/border" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btn_connect_camera"
+                    android:layout_width="188dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/bt_selector"
+                    android:baselineAligned="false"
+                    android:text="连接"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                <Button
+                    android:id="@+id/btn_photo"
+                    android:layout_width="188dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/bt_selector"
+                    android:baselineAligned="false"
+                    android:text="拍照"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                <Button
+                    android:id="@+id/btn_convert"
+                    android:layout_width="188dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/bt_selector"
+                    android:baselineAligned="false"
+                    android:text="切换"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

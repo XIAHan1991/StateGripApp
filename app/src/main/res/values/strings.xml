@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">标准化台区验收</string>
+    <string name="check_tool">验证</string>
+    <string name="create_tool">创建任务</string>
+    <string name="camera_tool">拍照</string>
+    <string name="queryall_tool">历史记录查询</string>
+    <string name="set_tool">设置</string>
+    <string name="query_tool">验收结果</string>
+    <string name="search">筛选</string>
+    <string name="ip">192.168.20.175</string>
+    <string name="camera_path"></string>
+    <string name="image_path"></string>
+</resources>
