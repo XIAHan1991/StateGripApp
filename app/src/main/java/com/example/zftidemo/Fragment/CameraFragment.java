@@ -10,22 +10,15 @@ import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import androidx.annotation.UiThread;
-import androidx.appcompat.app.AppCompatCallback;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.zftidemo.MainActivity;
 import com.example.zftidemo.R;
-import com.example.zftidemo.View.LazyFragment;
+import com.example.zftidemo.dao.Constant;
+import com.example.zftidemo.utils.ImageRotation;
 import com.serenegiant.usb.CameraDialog;
 import com.serenegiant.usb.DeviceFilter;
 import com.serenegiant.usb.USBMonitor;
@@ -33,32 +26,10 @@ import com.serenegiant.usb.UVCCamera;
 import com.serenegiant.usbcameracommon.UVCCameraHandler;
 import com.serenegiant.usbcameracommon.UvcCameraDataCallBack;
 import com.serenegiant.widget.CameraViewInterface;
-import com.serenegiant.widget.UVCCameraTextureView;
 
 import java.util.List;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.graphics.SurfaceTexture;
-import android.hardware.usb.UsbDevice;
-import android.os.Bundle;
-import android.os.Environment;
-import androidx.annotation.Nullable;
-import android.util.Log;
-import android.view.Surface;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.Toast;
+import java.util.TreeMap;
 
-import com.serenegiant.common.BaseActivity;
-import com.serenegiant.usb.CameraDialog;
-import com.serenegiant.usb.DeviceFilter;
-import com.serenegiant.usb.USBMonitor;
-import com.serenegiant.usb.UVCCamera;
-import com.serenegiant.usbcameracommon.UVCCameraHandler;
-import com.serenegiant.usbcameracommon.UvcCameraDataCallBack;
-import com.serenegiant.widget.CameraViewInterface;
-import com.serenegiant.widget.UVCCameraTextureView;
-import static com.serenegiant.utils.ThreadPool.queueEvent;
 import static com.serenegiant.utils.UIThreadHelper.runOnUiThread;
 import static java.lang.Thread.sleep;
 
@@ -71,21 +42,24 @@ public class CameraFragment extends Fragment implements CameraDialog.CameraDialo
     private static final float[] BANDWIDTH_FACTORS = {0.5f, 0.5f};
 
     // for accessing USB and USB camera
-    private String  pathcamera="/storage/emulated/0/DCIM/USBCameraTest/front/1.png";
-    private String  pathcamera2="/storage/emulated/0/DCIM/USBCameraTest/front/2.png";
-
+    private String  pathcamera;
+    private String  image_save_path;
+    private String local = "front";
+    private Integer rotation = 0;
+    // image save reverse
+    //private boolean save_reverse = true;
     public void setmUSBMonitor(USBMonitor mUSBMonitor) {
         this.mUSBMonitor = mUSBMonitor;
     }
     public USBMonitor mUSBMonitor;
-    public UVCCameraHandler mHandlerFirst;
+    public static UVCCameraHandler mHandlerFirst;
     public CameraViewInterface mUVCCameraViewFirst;
     public Button mCaptureButtonFirst;
-    private static boolean reverse = false;
-    private String connect_order = "first";
-    public UVCCameraHandler mHandlerSecond;
-    public CameraViewInterface mUVCCameraViewSecond;
 
+    private String connect_order = "first";
+    public static UVCCameraHandler mHandlerSecond;
+    public CameraViewInterface mUVCCameraViewSecond;
+    public String image_name0, image_name1;
     public Fragment getFragment() {
         return fragment;
     }
@@ -114,13 +88,20 @@ public class CameraFragment extends Fragment implements CameraDialog.CameraDialo
         camera_connect = (Button) view.findViewById(R.id.btn_connect_camera);
         camera_convert = (Button) view.findViewById(R.id.btn_convert);
 
+
         camera_connect.setOnClickListener(mOnClickListener);
         camera_convert.setOnClickListener(mOnClickListener);
         camera_convert.setVisibility(View.INVISIBLE);
+        pathcamera = this.getResources().getString(R.string.camera_path);
+        image_save_path = this.getResources().getString(R.string.image_path);
         // view.findViewById(R.id.RelativeLayout1).setOnClickListener(mOnClickListener);
-
+        rotation = Integer.parseInt(this.getResources().getString(R.string.rotation));
+        image_name0 = Constant.save_reverse ? "2.png" : "1.png";
+        image_name1 = Constant.save_reverse ? "1.png" : "2.png";
 //        mUSBMonitor = new USBMonitor(getContext(), mOnDeviceConnectListener);
         ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        camera_convert.setEnabled(false);
+        btn_photo.setEnabled(false);
         resultFirstCamera(view);
         resultSecondCamera(view);
         return view;
@@ -129,9 +110,10 @@ public class CameraFragment extends Fragment implements CameraDialog.CameraDialo
     UvcCameraDataCallBack firstDataCallBack = new UvcCameraDataCallBack() {
         @Override
         public void getData(byte[] data) {
-            if (DEBUG) Log.v(TAG, "数据回调:" + data.length);
+             // if (DEBUG) Log.v(TAG, "数据回调:" + data.length);
         }
     };
+
     private void resultFirstCamera(View view) {
         mUVCCameraViewFirst = (CameraViewInterface) view.findViewById(R.id.camera_view_first);
         //设置显示宽高
@@ -162,11 +144,11 @@ public class CameraFragment extends Fragment implements CameraDialog.CameraDialo
         public void onConnect(final UsbDevice device, final USBMonitor.UsbControlBlock ctrlBlock, final boolean createNew) {
             //设备连接成功
             try {
-                if (connect_order.equals("first") && !mHandlerFirst.isOpened() && device.equals(mDeviceListAdapter.getItem(reverse ? 1 : 0))){
+                if (connect_order.equals("first") && !mHandlerFirst.isOpened() && device.equals(mDeviceListAdapter.getItem(Constant.camera_reverse ? 1 : 0))){
                     mHandlerFirst.open(ctrlBlock);
                     final SurfaceTexture st1 = mUVCCameraViewFirst.getSurfaceTexture();
                     mHandlerFirst.startPreview(new Surface(st1));
-                }else if (connect_order.equals("second") && !mHandlerSecond.isOpened() && device.equals(mDeviceListAdapter.getItem(reverse ? 0 : 1))){
+                }else if (connect_order.equals("second") && !mHandlerSecond.isOpened() && device.equals(mDeviceListAdapter.getItem(Constant.camera_reverse ? 0 : 1))){
                     mHandlerSecond.open(ctrlBlock);
                     final SurfaceTexture st2 = mUVCCameraViewSecond.getSurfaceTexture();
                     mHandlerSecond.startPreview(new Surface(st2));
@@ -258,31 +240,30 @@ public class CameraFragment extends Fragment implements CameraDialog.CameraDialo
                 break;*/
                 case R.id.btn_front:
                     //拍摄物体正面
-                    pathcamera="/storage/emulated/0/DCIM/USBCameraTest/front/1.png";
-                    pathcamera2="/storage/emulated/0/DCIM/USBCameraTest/front/2.png";
+                    local = "front";
                     break;
                 case R.id.btn_side:
                     //拍摄物体侧面
-                    pathcamera="/storage/emulated/0/DCIM/USBCameraTest/side/1.png";
-                    pathcamera2="/storage/emulated/0/DCIM/USBCameraTest/side/2.png";
+                    local = "side";
                     break;
                 case R.id.btn_behind:
                     //拍摄物体后面
-                    pathcamera="/storage/emulated/0/DCIM/USBCameraTest/back/1.png";
-                    pathcamera2="/storage/emulated/0/DCIM/USBCameraTest/back/2.png";
+                    local = "back";
                     break;
                 case R.id.btn_connect_camera:
                     if (camera_connect.getText().toString().equals("连接")){
                         try {
                             camera_connect.setEnabled(false);
                             ConnectUSB0();
-                            Thread.sleep(500);
+                            Thread.sleep(200);
                             ConnectUSB1();
-                            Thread.sleep(500);
+                            Thread.sleep(200);
                             if(mHandlerFirst.isOpened() && mHandlerSecond.isOpened()) {
                                 mCaptureButtonFirst.setVisibility(View.VISIBLE);
                                 camera_connect.setText("断开");
                                 camera_convert.setVisibility(View.VISIBLE);
+                                camera_convert.setEnabled(true);
+                                mCaptureButtonFirst.setEnabled(true);
                             }
                         }catch (Exception e){
                             e.printStackTrace();
@@ -293,12 +274,8 @@ public class CameraFragment extends Fragment implements CameraDialog.CameraDialo
                         try{
                             camera_connect.setEnabled(false);
                             DisConnect();
-                            Thread.sleep(200);
-                            if(!mHandlerFirst.isOpened() || !mHandlerSecond.isOpened()) {
-                                mCaptureButtonFirst.setVisibility(View.INVISIBLE);
-                                camera_connect.setText("连接");
-                                camera_convert.setVisibility(View.INVISIBLE);
-                            }
+                            checkConnectStatus();
+
                         }catch (Exception e){
                             e.printStackTrace();
                         }finally {
@@ -308,17 +285,20 @@ public class CameraFragment extends Fragment implements CameraDialog.CameraDialo
 
                     break;
                 case R.id.btn_convert:
-                    reverse = !reverse;
+                    Constant.camera_reverse = !Constant.camera_reverse;
                     camera_convert.setEnabled(false);
+                    camera_connect.setEnabled(false);
+                    mCaptureButtonFirst.setEnabled(false);
                     try {
                         DisConnect();
                         ConnectUSB0();
-                        Thread.sleep(500);
                         ConnectUSB1();
-                        Thread.sleep(500);
                         camera_convert.setEnabled(true);
+                        mCaptureButtonFirst.setEnabled(true);
                     }catch (Exception e){
                         e.printStackTrace();
+                    }finally {
+                        camera_connect.setEnabled(true);
                     }
                     break;
                 case R.id.btn_photo:
@@ -326,7 +306,9 @@ public class CameraFragment extends Fragment implements CameraDialog.CameraDialo
                     if (mHandlerFirst!= null) {
                         if (mHandlerFirst.isOpened()) {
                             if (checkPermissionWriteExternalStorage()) {
-                                mHandlerFirst.captureStill(pathcamera);//()中写入保存文件夹
+                                mHandlerFirst.captureStill(pathcamera+"/"+local+"/"+image_name0);//()中写入保存文件夹
+                                Thread rotationImage0 = new ImageRotation(pathcamera+"/"+local+"/"+image_name0, image_save_path+"/"+local+"/"+image_name0, rotation);
+                                rotationImage0.start();
                                 Toast.makeText(getContext(),"图片拍照完成", Toast.LENGTH_SHORT).show();
                             }
                             else {
@@ -337,7 +319,9 @@ public class CameraFragment extends Fragment implements CameraDialog.CameraDialo
                     if (mHandlerSecond != null) {
                         if (mHandlerSecond.isOpened()) {
                             if (checkPermissionWriteExternalStorage()) {
-                                mHandlerSecond.captureStill(pathcamera2);
+                                mHandlerSecond.captureStill(pathcamera+"/"+local+"/"+image_name1);
+                                Thread rotationImage1 = new ImageRotation(pathcamera+"/"+local+"/"+image_name1, image_save_path+"/"+local+"/"+image_name1, rotation);
+                                rotationImage1.start();
                                 // Toast.makeText(getContext(),"图片二拍照完成", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -356,39 +340,62 @@ public class CameraFragment extends Fragment implements CameraDialog.CameraDialo
             return false;
     }
     public void ConnectUSB0(){
-        if (mHandlerFirst != null) {
-            if (!mHandlerFirst.isOpened()) {
-                if (mDeviceListAdapter == null){
-                    List<DeviceFilter> filter = DeviceFilter.getDeviceFilters(getActivity(), com.serenegiant.uvccamera.R.xml.device_filter);
-                    mDeviceListAdapter = new CameraDialog.DeviceListAdapter(getActivity(), mUSBMonitor.getDeviceList(filter.get(0)));
-                }
-                connect_order = "first";
-                UsbDevice device0 = mDeviceListAdapter.getItem(reverse ? 1 : 0);
-                mUSBMonitor.requestPermission(device0);
+        try{
+            if (mHandlerFirst != null) {
+                if (!mHandlerFirst.isOpened()) {
+                    if (mDeviceListAdapter == null){
+                        List<DeviceFilter> filter = DeviceFilter.getDeviceFilters(getActivity(), com.serenegiant.uvccamera.R.xml.device_filter);
+                        mDeviceListAdapter = new CameraDialog.DeviceListAdapter(getActivity(), mUSBMonitor.getDeviceList(filter.get(0)));
+                    }
+                    connect_order = "first";
+                    UsbDevice device0 = mDeviceListAdapter.getItem(Constant.camera_reverse ? 1 : 0);
+                    mUSBMonitor.requestPermission(device0);
 //                CameraDialog.showDialog(getActivity());
+                }
             }
+            Thread.sleep(100);
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
     }
     public void ConnectUSB1(){
-        if (mHandlerSecond != null) {
-            if (mHandlerSecond != null && !mHandlerSecond.isOpened()) {
-                if (mDeviceListAdapter == null){
-                    List<DeviceFilter> filter = DeviceFilter.getDeviceFilters(getActivity(), com.serenegiant.uvccamera.R.xml.device_filter);
-                    mDeviceListAdapter = new CameraDialog.DeviceListAdapter(getActivity(), mUSBMonitor.getDeviceList(filter.get(0)));
+        try {
+            if (mHandlerSecond != null) {
+                if (mHandlerSecond != null && !mHandlerSecond.isOpened()) {
+                    if (mDeviceListAdapter == null){
+                        List<DeviceFilter> filter = DeviceFilter.getDeviceFilters(getActivity(), com.serenegiant.uvccamera.R.xml.device_filter);
+                        mDeviceListAdapter = new CameraDialog.DeviceListAdapter(getActivity(), mUSBMonitor.getDeviceList(filter.get(0)));
+                    }
+                    connect_order = "second";
+                    UsbDevice device1 = mDeviceListAdapter.getItem(Constant.camera_reverse ? 0 : 1);
+                    mUSBMonitor.requestPermission(device1);//获取设备信息，并检查打开此设备的权限
                 }
-                connect_order = "second";
-                UsbDevice device1 = mDeviceListAdapter.getItem(reverse ? 0 : 1);
-                mUSBMonitor.requestPermission(device1);//获取设备信息，并检查打开此设备的权限
             }
+            Thread.sleep(100);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public void checkConnectStatus(){
+        try {
+            Thread.sleep(100);
+            if (!mHandlerFirst.isOpened() || !mHandlerSecond.isOpened()) {
+                mCaptureButtonFirst.setVisibility(View.INVISIBLE);
+                camera_connect.setText("连接");
+                camera_convert.setVisibility(View.INVISIBLE);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
-
     public void DisConnect(){
         try{
+
             if (mHandlerFirst.isOpened()) {
                 mHandlerFirst.close();
             }
-
             if (mHandlerSecond.isOpened()){
                 mHandlerSecond.close();
             }

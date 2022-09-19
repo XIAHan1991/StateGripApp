@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.zftidemo.R;
+import com.example.zftidemo.utils.ImageHandler;
+import com.example.zftidemo.utils.Monitor;
 import com.serenegiant.usb.USBMonitor;
 
 import static java.lang.Thread.sleep;
@@ -18,7 +21,7 @@ import static java.lang.Thread.sleep;
 public class CameraTitle extends Fragment {
     FragmentManager mFragmentManager;
     private Fragment fragment;
-    CameraFragment cameraFragment;
+    public CameraFragment cameraFragment;
     private USBMonitor mUSBMonitor;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class CameraTitle extends Fragment {
         cameraFragment=(CameraFragment) fragment;
         mUSBMonitor = new USBMonitor(getContext(), cameraFragment.mOnDeviceConnectListener);
         cameraFragment.setmUSBMonitor(mUSBMonitor);
+        ImageHandler imageHandler = new ImageHandler((ImageView) view.findViewById(R.id.signal));
+        (new Monitor(imageHandler)).start();
         return view;
     }
         @Override

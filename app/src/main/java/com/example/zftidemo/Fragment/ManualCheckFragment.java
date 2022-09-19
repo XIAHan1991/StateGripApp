@@ -41,10 +41,9 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 import static java.lang.Thread.sleep;
 
 public class ManualCheckFragment extends Fragment implements View.OnClickListener {
-    String fileAddress[] = new String[]{"/storage/emulated/0/DCIM/USBCameraTest/front/1.png", "/storage/emulated/0/DCIM/USBCameraTest/front/2.png",
-            "/storage/emulated/0/DCIM/USBCameraTest/side/1.png","/storage/emulated/0/DCIM/USBCameraTest/side/2.png",
-            "/storage/emulated/0/DCIM/USBCameraTest/back/1.png","/storage/emulated/0/DCIM/USBCameraTest/back/2.png"};
-
+    String fileAddress[] = new String[]{"front/1.png", "front/2.png",
+            "side/1.png","side/2.png", "back/1.png","back/2.png"};
+    private String img_path;
     private int[] arrayPicture =  new int[]{R.drawable.check,R.drawable.mes,R.drawable.set};
     private ImageSwitcher imageSwitcher;
     private int index;
@@ -71,8 +70,10 @@ public class ManualCheckFragment extends Fragment implements View.OnClickListene
         btn_manual_refresh =(Button) view.findViewById(R.id.btn_manual_refresh);
         btn_manual_refresh.setOnClickListener(this);
         btn_confirm.setOnClickListener(this);
-        zoomImageView.setImageURI(Uri.parse(fileAddress[0]));
+        img_path = this.getResources().getString(R.string.image_path);
+        zoomImageView.setImageURI(Uri.parse(img_path+"/"+fileAddress[0]));
         zoomImageView.ReChangeScale();
+
 //        zoomImageView.setImageURI(null);
         pre_pho.setOnClickListener(this);
         next_pho.setOnClickListener(this);
@@ -107,19 +108,19 @@ public class ManualCheckFragment extends Fragment implements View.OnClickListene
             case R.id.btn_manual_refresh:
                 zoomImageView.setImageURI(null);
                 index = 0;
-                zoomImageView.setImageURI(Uri.parse(fileAddress[index]));
+                zoomImageView.setImageURI(Uri.parse(img_path+"/"+fileAddress[index]));
                 zoomImageView.ReChangeScale();
                 break;
             case R.id.pre_pho:
                 System.out.println("=============================================================");
                 index = index == 0 ? fileAddress.length - 1 : index -1 ;
-                zoomImageView.setImageURI(Uri.parse(fileAddress[index]));
+                zoomImageView.setImageURI(Uri.parse(img_path+"/"+fileAddress[index]));
                 zoomImageView.ReChangeScale();
                 break;
             case R.id.next_pho:
                 System.out.println("=============================================================");
                 index = index == fileAddress.length-1 ? 0: index + 1;
-                zoomImageView.setImageURI(Uri.parse(fileAddress[index]));
+                zoomImageView.setImageURI(Uri.parse(img_path+"/"+fileAddress[index]));
                 zoomImageView.ReChangeScale();
                 break;
             case R.id.btn_confirm:

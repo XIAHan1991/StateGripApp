@@ -21,6 +21,8 @@ import com.example.zftidemo.MainActivity;
 import com.example.zftidemo.R;
 import com.example.zftidemo.View.TextColor;
 import com.example.zftidemo.http.HttpService;
+import com.example.zftidemo.utils.ImageHandler;
+import com.example.zftidemo.utils.Monitor;
 
 import org.json.JSONException;
 
@@ -67,7 +69,8 @@ public class MesFragment extends Fragment implements View.OnClickListener {
         }
 
         context = this.getActivity();
-
+        ImageHandler imageHandler = new ImageHandler((ImageView) view.findViewById(R.id.signal));
+        (new Monitor(imageHandler)).start();
         return view;
     }
 
@@ -97,7 +100,7 @@ public class MesFragment extends Fragment implements View.OnClickListener {
                 HttpService httpService = new HttpService(context);
                 try {
                         httpService.taskDetail(texts_data, texts_result);
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

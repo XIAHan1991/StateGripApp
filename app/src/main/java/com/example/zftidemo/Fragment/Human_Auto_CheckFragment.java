@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.zftidemo.R;
+import com.example.zftidemo.utils.ImageHandler;
+import com.example.zftidemo.utils.Monitor;
 
 public class Human_Auto_CheckFragment extends Fragment {
     FragmentManager mFragmentManager;
@@ -35,6 +38,8 @@ public class Human_Auto_CheckFragment extends Fragment {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         fragmentNow = manualCheckFragment;
+        ImageHandler imageHandler = new ImageHandler((ImageView) view.findViewById(R.id.signal));
+        (new Monitor(imageHandler)).start();
         return view;
     }
     private class OnCheckedChanged implements CompoundButton.OnCheckedChangeListener{

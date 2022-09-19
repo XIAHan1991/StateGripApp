@@ -74,7 +74,7 @@
                         android:background="@drawable/radio"
                         android:button="@null"
                         android:gravity="center"
-                        android:text="后面"
+                        android:text="背面"
                         android:textSize="18sp" />
 
                 </RadioGroup>
@@ -85,7 +85,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:baselineAligned="false"
-                android:layout_marginTop="20dp">
+                android:rotation="90"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                >
 
                 <RelativeLayout
                     android:id="@+id/camera_layout_firest"

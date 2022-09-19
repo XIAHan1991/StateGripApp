@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -28,8 +29,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.example.zftidemo.Flag;
 import com.example.zftidemo.MainActivity;
 import com.example.zftidemo.R;
+import com.example.zftidemo.View.TextColor;
 import com.example.zftidemo.View.ZoomImageView;
 import com.example.zftidemo.dao.ConnectDB;
+import com.example.zftidemo.dao.Constant;
 import com.example.zftidemo.dao.MeasureInformation;
 import com.example.zftidemo.dao.ResultOrder;
 
@@ -72,7 +75,7 @@ public class HttpService {
         queryTaskId = get_taskId;
     }
 
-    public List<MeasureInformation> parseRes(String res){
+    public List<MeasureInformation> parseRes(String res) throws Exception{
         List<MeasureInformation> resArray = JSONArray.parseArray(res, MeasureInformation.class);
         return resArray;
     }
@@ -80,7 +83,7 @@ public class HttpService {
     /**
      * 查询任务识别详情
      */
-    public void taskDetail(TextView[] texts_data, TextView[] texts_result) throws JSONException {
+    public void taskDetail(TextView[] texts_data, TextView[] texts_result) throws Exception {
         Map map = postTaskDetailData(ipAddress);
 
         String code = String.valueOf(map.get("code"));
@@ -225,7 +228,7 @@ public class HttpService {
     /**
      * 条件查询识别任务详情
      */
-    public void taskList(int type, TextView tx_pagenum, Button btn_pre, Button btn_next, ListView listView, String current, String size, String start_date, String end_date, String  status) {
+    public void taskList(int type, TextView tx_pagenum, Button btn_pre, Button btn_next, ListView listView, String current, String size, String start_date, String end_date, String  status) throws Exception{
         if (type == 0) {
             // 首页
             current = "1";
@@ -405,6 +408,8 @@ public class HttpService {
             @Override
             public void run() {
                 textView.setText(data);
+                textView.setTextColor(new TextColor().TextColor(data));
+
             }
         });
     }
@@ -427,17 +432,13 @@ public class HttpService {
      * 上传照片
      */
     public void uploadImg(Resources resources, ImageView[] imageView,int index,ImageView[] imageViews, Bitmap bitmap_load,Context context){
-        String fileAddress[] = new String[6];
-        fileAddress[0] = "/storage/emulated/0/DCIM/USBCameraTest/front/1.png";
-        fileAddress[1] = "/storage/emulated/0/DCIM/USBCameraTest/front/2.png";
-        fileAddress[2] = "/storage/emulated/0/DCIM/USBCameraTest/side/1.png";
-        fileAddress[3] = "/storage/emulated/0/DCIM/USBCameraTest/side/2.png";
-        fileAddress[4] = "/storage/emulated/0/DCIM/USBCameraTest/back/1.png";
-        fileAddress[5] = "/storage/emulated/0/DCIM/USBCameraTest/back/2.png";
+        String fileAddress[] = new String[]{"front/1.png", "front/2.png",
+                "side/1.png","side/2.png", "back/1.png","back/2.png"};
+        String save_path = resources.getString(R.string.image_path);
 
         // 上传图片
         // "/storage/emulated/0/app/1.jpg"
-        Map map = postTaskUploadImgData(ipAddress, fileAddress[index], String.valueOf(index+1));
+        Map map = postTaskUploadImgData(ipAddress, save_path+"/"+fileAddress[index], String.valueOf(index+1));
 //        Map map1 = postTaskUploadImgData(ipAddress, fileAddress[0], "1");
 //        Map map2 = postTaskUploadImgData(ipAddress, fileAddress[1], "2");
 //        Map map3 = postTaskUploadImgData(ipAddress, fileAddress[2], "3");
@@ -545,6 +546,7 @@ public class HttpService {
             ipAddress = url;
             Looper.prepare();
             Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show();
+            Constant.is_connected = true;
             Looper.loop();
         } else {
             Looper.prepare();
@@ -690,6 +692,7 @@ public class HttpService {
         String code = String.valueOf(map.get("code"));
         String message = String.valueOf(map.get("message"));
         if (code.equals("0")) {
+            ConnectDB.updateStaticsResult(ipAddress.split(":")[0], taskId);
             Looper.prepare();
             Toast.makeText(context, "识别成功！", Toast.LENGTH_SHORT).show();
             Looper.loop();

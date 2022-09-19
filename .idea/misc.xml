@@ -3,18 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/drawable/bt_selector.xml" value="0.2638888888888889" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/drawable/btnpress.xml" value="0.32083333333333336" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/drawable/btnpressed.xml" value="0.32083333333333336" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/drawable/btnshape.xml" value="0.32083333333333336" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/drawable/dialog_close_selector.xml" value="0.215625" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/font/font.xml" value="0.30364583333333334" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/bottom_tab.xml" value="0.14011437908496732" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/cam_man_layout.xml" value="0.4671875" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/camera_layout.xml" value="0.22720364741641338" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/camera_title.xml" value="0.22720364741641338" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/check_layout.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/check_layout1.xml" value="0.4671875" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/connect_status.xml" value="0.271875" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/createtask.xml" value="0.22720364741641338" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/device_view.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/devicelist.xml" value="0.4671875" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/dialog.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/human_auto_check_layout.xml" value="0.22720364741641338" />
+        <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/imgeview.xml" value="0.4666666666666667" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/manualcheck.xml" value="0.21603260869565216" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/mes_layout.xml" value="0.2609375" />
         <entry key="..\:/Users/xia_h/project/Android/ZFTIdemo/app/src/main/res/layout/photograph.xml" value="0.19947916666666668" />

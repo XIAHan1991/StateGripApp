@@ -11,6 +11,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
+        android:layout_marginBottom="10dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,6 +30,7 @@
                     android:layout_height="400dp"
                     android:layout_column="0"
                     android:layout_marginRight="10dp"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:text="前
                     面"
@@ -36,6 +38,7 @@
 
                 <ImageView
                     android:id="@+id/f_image1"
+                    android:layout_marginLeft="25dp"
                     android:layout_width="230dp"
                     android:layout_height="400dp"
                     android:layout_column="1"
@@ -48,7 +51,7 @@
                     android:layout_width="230dp"
                     android:layout_height="400dp"
                     android:layout_column="2"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="25dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/camera" />
             </LinearLayout>
@@ -67,6 +70,7 @@
                     android:text="侧
                     面"
                     android:layout_marginRight="10dp"
+                    android:textStyle="bold"
                     android:layout_width="50dp"
                     android:layout_height="400dp"
                     android:gravity="center"
@@ -75,6 +79,7 @@
                     />
                 <ImageView
                     android:id="@+id/p_image1"
+                    android:layout_marginLeft="25dp"
                     android:layout_width="230dp"
                     android:layout_height="400dp"
                     android:src="@drawable/camera"
@@ -83,7 +88,7 @@
                     />
                 <ImageView
                     android:id="@+id/p_image2"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="25dp"
                     android:layout_width="230dp"
                     android:layout_height="400dp"
                     android:src="@drawable/camera"
@@ -103,17 +108,19 @@
                 android:orientation="horizontal">
                 <TextView
                     android:layout_marginLeft="15dp"
-                    android:text="后
+                    android:text="背
                     面"
                     android:layout_marginRight="10dp"
                     android:layout_width="50dp"
                     android:layout_height="400dp"
                     android:gravity="center"
+                    android:textStyle="bold"
                     android:layout_column="0"
                     android:textSize="25sp"/>
 
                 <ImageView
                     android:id="@+id/b_image1"
+                    android:layout_marginLeft="25dp"
                     android:layout_width="230dp"
                     android:layout_height="400dp"
                     android:layout_column="1"
@@ -124,7 +131,7 @@
 
                 <ImageView
                     android:id="@+id/b_image2"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="25dp"
                     android:layout_width="230dp"
                     android:layout_height="400dp"
                     android:src="@drawable/camera"
@@ -138,6 +145,7 @@
         android:id="@+id/bottom_panel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
         <Button
             android:id="@+id/btn_refresh"

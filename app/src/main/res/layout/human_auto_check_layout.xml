@@ -20,6 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="人工验证"
+                android:textStyle="bold"
                 style="@style/MainRadioButton"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -31,11 +32,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textStyle="bold"
                 android:text="智能验证"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:background="@drawable/bg_blue_gray_select_right"/>
+
         </RadioGroup>
+        <include layout="@layout/connect_status" />
     </androidx.appcompat.widget.Toolbar>
     <FrameLayout
         android:id="@+id/hum_auto_framelayout"

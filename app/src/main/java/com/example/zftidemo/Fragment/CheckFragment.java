@@ -35,6 +35,7 @@ public class CheckFragment extends Fragment implements View.OnClickListener{
     Button btn_refresh,btn_upload,btn_check;
     Context context;
     Bitmap bitmap_load;
+    private String img_path;
 //    ZoomImageView imageView1,imageView2;
     public static ImageView[] imageView= new ImageView[6];
     public static ImageView[] imageViews = new ImageView[6];
@@ -68,7 +69,7 @@ public class CheckFragment extends Fragment implements View.OnClickListener{
         btn_refresh.setOnClickListener(this);
         btn_upload.setOnClickListener(this);
         btn_check.setOnClickListener(this);
-
+        img_path = this.getResources().getString(R.string.image_path);
 
         context = this.getActivity();
 
@@ -204,17 +205,12 @@ public class CheckFragment extends Fragment implements View.OnClickListener{
      * 显示图片
      */
     public void showImg() {
-        String fileAddress[] = new String[6];
-        fileAddress[0] = "/storage/emulated/0/DCIM/USBCameraTest/front/1.png";
-        fileAddress[1] = "/storage/emulated/0/DCIM/USBCameraTest/front/2.png";
-        fileAddress[2] = "/storage/emulated/0/DCIM/USBCameraTest/side/1.png";
-        fileAddress[3] = "/storage/emulated/0/DCIM/USBCameraTest/side/2.png";
-        fileAddress[4] = "/storage/emulated/0/DCIM/USBCameraTest/back/1.png";
-        fileAddress[5] = "/storage/emulated/0/DCIM/USBCameraTest/back/2.png";
+        String fileAddress[] = new String[]{"front/1.png", "front/2.png",
+                "side/1.png","side/2.png", "back/1.png","back/2.png"};
 
         for(int i = 0; i < 6; i++) {
             try {
-                Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(fileAddress[i])); //从本地取图片
+                Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(img_path+"/"+fileAddress[i])); //从本地取图片
                 imageViews[i].setImageBitmap(bitmap); // 显示
 
                 if (qBadgeView[i] != null) {

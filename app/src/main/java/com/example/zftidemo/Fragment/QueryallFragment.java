@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -46,6 +47,7 @@ public class QueryallFragment extends Fragment implements AdapterView.OnItemClic
     static int count = 0;
     String start_date = "";
     String end_date = "";
+    ImageView imageView;
 
 
     @Override
@@ -62,6 +64,8 @@ public class QueryallFragment extends Fragment implements AdapterView.OnItemClic
         btn_next = (Button)view.findViewById(R.id.nex_page);
         tx_pagenum = (TextView)view.findViewById(R.id.page_num);
         his_toolbar = (Toolbar)view.findViewById(R.id.his_toolbar);
+        imageView = (ImageView) view.findViewById(R.id.back_detail);
+        imageView.setOnClickListener(this);
         /*his_toolbar.setTitle("历史数据查询");*/
         his_toolbar.inflateMenu(R.menu.search_menu);
         his_toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -185,8 +189,16 @@ public class QueryallFragment extends Fragment implements AdapterView.OnItemClic
         new Thread() {
             @Override
             public void run() {
-                HttpService httpService = new HttpService(getActivity());
-                httpService.taskList(0,tx_pagenum, btn_pre, btn_next, listView,current,size,start_date,end_date,status);
+                try {
+                    HttpService httpService = new HttpService(getActivity());
+                    httpService.taskList(0,tx_pagenum, btn_pre, btn_next, listView,current,size,start_date,end_date,status);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    getActivity().getSupportFragmentManager().beginTransaction().
+                            replace(R.id.demo2,new MesFragment())
+                            .commit();
+                }
+
             }
         }.start();
     }
@@ -203,9 +215,17 @@ public class QueryallFragment extends Fragment implements AdapterView.OnItemClic
         new Thread() {
             @Override
             public void run() {
-                HttpService httpService = new HttpService(getActivity());
-                httpService.taskList(type,tx_pagenum, btn_pre, btn_next, listView,current,size,start_date, end_date,status);
-                httpService.isFinalCurrent(btn_pre, btn_next, size,start_date, end_date,status);
+                try{
+                    HttpService httpService = new HttpService(getActivity());
+                    httpService.taskList(type,tx_pagenum, btn_pre, btn_next, listView,current,size,start_date, end_date,status);
+                    httpService.isFinalCurrent(btn_pre, btn_next, size,start_date, end_date,status);
+                }catch (Exception e){
+                    getActivity().getSupportFragmentManager().beginTransaction().
+                            replace(R.id.demo2,new MesFragment())
+                            .commit();
+                    e.printStackTrace();
+                }
+
 //                HttpTool httpTool = new HttpTool();
 //                String address = httpTool.getData(getContext(), "address");
 //                count = ConnectDB.getDBCount(address);
@@ -221,6 +241,11 @@ public class QueryallFragment extends Fragment implements AdapterView.OnItemClic
                 break;
             case R.id.nex_page:
                 nexPage();
+                break;
+            case R.id.back_detail:
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.demo2,new MesFragment())
+                        .commit();
                 break;
         }
     }

@@ -26,6 +26,7 @@ import com.example.zftidemo.Fragment.MesFragment;
 import com.example.zftidemo.Fragment.QueryallFragment;
 import com.example.zftidemo.Fragment.SetFragment;
 import com.example.zftidemo.View.NoSwipeViewPager;
+import com.example.zftidemo.dao.Constant;
 import com.example.zftidemo.http.HttpService;
 import com.example.zftidemo.http.HttpTool;
 import com.serenegiant.usb.CameraDialog;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             R.drawable.mes, R.drawable.set};
     private int[] icons_press ={R.drawable.task_avtive, R.drawable.camera_active,R.drawable.check_avtive,
     R.drawable.mes_avtive, R.drawable.set_avtive};
+    private int connect_id = R.drawable.connected;
     private Context context; // 上下文
     EditText edit_address;
     HttpTool httpTool = null;
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        fragment.setmUSBMonitor(mUSBMonitor);
         // 向服务器发起登录请求
         login();
+        //monitor();
     }
 
     private void initView() {
@@ -145,7 +148,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-
     //底部菜单栏单击事件
         @Override
         public void onClick(View v) {
@@ -157,6 +159,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                }
                 if (id == tabs_id[i]){
                     resetTab(true,i);
+                    if (i != 1){
+                        CameraFragment cameraFragment =  ((CameraTitle)tabFragments[1]).cameraFragment;
+                        cameraFragment.DisConnect();
+                        cameraFragment.checkConnectStatus();
+                    }
                     break;
                 }
             }

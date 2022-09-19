@@ -14,9 +14,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/set_tool"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="@font/kaiti"
             android:layout_gravity="center"/>
+        <include layout="@layout/connect_status" />
     </androidx.appcompat.widget.Toolbar>
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,6 +39,9 @@
             android:text="@string/ip"
             android:layout_marginTop="3dp"
             android:layout_marginLeft="5dp"
+            android:singleLine="true"
+            android:imeOptions="actionSend"
+            android:maxLength="15"
             android:textSize="20sp"
             android:gravity="center"
             android:theme="@style/editTextStyle"/>

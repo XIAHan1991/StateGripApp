@@ -17,20 +17,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary">
+                <ImageView
+                    android:id="@+id/back_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/back"
+                    >
+
+                </ImageView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/queryall_tool"
-                    android:textSize="20sp"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/kaiti"
                     android:textColor="@color/black"
                     android:layout_gravity="center"/>
             </androidx.appcompat.widget.Toolbar>
             <ListView
-                android:background="@color/white"
                 android:id="@+id/device_list"
                 android:layout_width="match_parent"
+                android:layout_marginBottom="20dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:dividerHeight="2dp"
+                />
 
 
             <LinearLayout
